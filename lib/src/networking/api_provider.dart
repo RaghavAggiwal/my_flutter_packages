@@ -1,11 +1,13 @@
+
+
 import 'dart:io';
 import 'dart:convert';
 import 'dart:async';
 import 'package:http/http.dart' as http;
 
 
-import 'package:myflutterpackages/networking/custom_exception.dart';
-import 'package:myflutterpackages/logger/logger.dart';
+import 'package:myflutterpackages/src/networking/custom_exception.dart';
+import 'package:myflutterpackages/src/logger/logger.dart';
 
 // code is inspired from this article
 // https://itnext.io/flutter-handling-your-network-api-calls-like-a-boss-936eef296547
