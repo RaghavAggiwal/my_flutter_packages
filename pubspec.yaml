@@ -1,8 +1,8 @@
 name: myflutterpackages
 description: My Flutter Packages
 version: 0.0.1
-author:
-homepage: 
+author: PrashantAdvait Foundation
+homepage: https://github.com/RaghavAggiwal/my_flutter_packages/
 
 environment:
   sdk: ">=2.7.0 <3.0.0"
@@ -10,6 +10,11 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+
+  #for logging
+  logger: ^0.9.1
+  #for http calls
+  http: ^0.12.1
 
 dev_dependencies:
   flutter_test:
