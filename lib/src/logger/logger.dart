@@ -1,3 +1,5 @@
+library logger;
+
 import 'package:logger/logger.dart';
 
 //for logging
