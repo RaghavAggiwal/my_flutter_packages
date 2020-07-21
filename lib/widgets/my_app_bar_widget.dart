@@ -2,12 +2,8 @@ import 'package:flutter/material.dart';
 
 Widget myAppBarWidget(BuildContext context, title, {List<Widget> actions: const [], Widget bottom}) {
   return AppBar(
-      title: Text(
-          title,
-          style: Theme.of(context).textTheme.headline5
-      ),
+      title: Text(title),
       centerTitle: true,
-      backgroundColor: Theme.of(context).primaryColor,
       actions: actions,
       bottom: bottom
   );
