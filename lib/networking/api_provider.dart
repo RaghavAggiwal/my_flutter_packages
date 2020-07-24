@@ -14,13 +14,19 @@ final logger = getLogger();
 
 class ApiProvider {
   //GET request
-  Future<dynamic> get(String apiEndPoint) async {
+  Future<dynamic> get(String apiEndPoint, [Map<String, String> headers]) async {
     //logging
     logger.d('API Provider - GET request: ${apiEndPoint}');
 
     var responseJson;
     try {
-      final response = await http.get(apiEndPoint);
+      var response;
+      if(headers == null) {
+        response = await http.get(apiEndPoint);
+      } else {
+        response = await http.get(apiEndPoint, headers: headers);
+      }
+
       responseJson = _response(response);
     } on SocketException {
       throw FetchDataException('No Internet connection');
@@ -51,7 +57,7 @@ class ApiProvider {
       case 400:
         throw BadRequestException(response.body.toString());
       case 401:
-
+        throw UnauthorisedException(response.body.toString());
       case 403:
         throw UnauthorisedException(response.body.toString());
       case 500:
@@ -62,3 +68,12 @@ class ApiProvider {
     }
   }
 }
+
+//void main() async {
+//  ApiProvider p = ApiProvider();
+//  String token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJhZ2hhdkBhZHZhaXQub3JnLmluIiwiZXhwIjoxNTk4MTkyMjMyLCJuYW1lIjoiUmFnaGF2IEFnZ2l3YWwiLCJwaG9uZSI6IiIsInVzZXJJZCI6InJhZ2hhdkBhZHZhaXQub3JnLmluIn0.z93LRKpvmYpuAfzCQore9nR6L0Uo9JwvD0XxACKyICM";
+//  Map<String, String> headers = {HttpHeaders.authorizationHeader: "Bearer $token"};
+//
+//  print(await p.get("http://localhost:4001/v1/user/books", headers));
+////  print(await p.get("http://localhost:4001/v1/books"));
+//}
