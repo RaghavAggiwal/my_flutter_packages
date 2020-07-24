@@ -13,6 +13,7 @@ import 'package:myflutterpackages/logger/logger.dart';
 final logger = getLogger();
 
 class ApiProvider {
+  //GET request
   Future<dynamic> get(String apiEndPoint) async {
     //logging
     logger.d('API Provider - GET request: ${apiEndPoint}');
@@ -24,7 +25,20 @@ class ApiProvider {
     } on SocketException {
       throw FetchDataException('No Internet connection');
     }
-//    log.i('API Provider - Response: ${responseJson}');
+    return responseJson;
+  }
+
+  Future<dynamic> post({String apiEndPoint, Map<String, String> headers, String body}) async {
+    //logging
+    logger.d('API Provider - POST request: ${apiEndPoint}');
+
+    var responseJson;
+    try {
+      final response = await http.post(apiEndPoint, headers: headers, body: body);
+      responseJson = _response(response);
+    } on SocketException {
+      throw FetchDataException('No Internet connection');
+    }
     return responseJson;
   }
 
